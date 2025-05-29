@@ -3,18 +3,17 @@ from pydantic_ai import Agent
 from pydantic_ai.models.gemini import GeminiModel
 from pathlib import Path
 import os
+# File tools (assumed to be defined in 'tools.py')
+from tools import read_file, list_files, rename_file
+
+# Define base directory
+base_dir = Path("test")
 
 # Load environment variables
 load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
     raise ValueError("GEMINI_API_KEY not found in .env file")
-
-# Define base directory
-base_dir = Path("test")
-
-# File tools (assumed to be defined in 'tools.py')
-from tools import read_file, list_files, rename_file
 
 # Initialize AI model and agent
 gemini_model = GeminiModel("gemini-2.5-flash-preview-04-17")
